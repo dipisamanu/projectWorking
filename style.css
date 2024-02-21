@@ -14,3 +14,11 @@
     height: 100px;
     width: auto;
 }
+
+.body {
+    background-image: url('sfondo.jpg'); /* Specifica il percorso dell'immagine */
+    background-size: cover; /* Imposta la dimensione dell'immagine per coprire l'intera pagina */
+    background-position: center; /* Centra l'immagine all'interno della pagina */
+    margin: 0; /* Rimuove i margini predefiniti del body */
+    padding: 0; /* Rimuove il padding predefinito del body */
+  }
