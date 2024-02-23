@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Crush Saga</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 70px);
+            /* 5 colonne */
+            grid-template-rows: repeat(5, 70px);
+            /* 5 righe */
+            grid-gap: 5px;
+        }
+
+        .cell {
+            width: 70px;
+            height: 70px;
+            background-color: #ddd;
+            /* Colore di sfondo delle celle */
+            border-radius: 10px;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .selected {
+            border: 3px solid yellow;
+            /* Cambia il bordo quando una cella è selezionata */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="grid" id="grid">
+            <!-- La tua griglia di gioco qui -->
+        </div>
+    </div>
+    <script>
+        const grid = document.getElementById('grid');
+        const width = 5; // Numero di colonne
+        const height = 5; // Numero di righe
+        const candies = ["🍬", "🍭", "🍫", "🍪", "🍩"]; // Array di emoji di caramelle
+        let board = []; // Matrice globale per la griglia di gioco
+        let selectedCell = null; // Cella selezionata
+
+        // Popola la griglia con emoji di caramelle casuali
+        function createBoard() {
+            for (let i = 0; i < height; i++) {
+                board[i] = [];
+                for (let j = 0; j < width; j++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.innerHTML = getRandomCandy();
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    grid.appendChild(cell);
+                    board[i][j] = cell.innerHTML;
+                }
+            }
+        }
+
+        // Restituisce un'emoji di caramella casuale dall'array candies
+        function getRandomCandy() {
+            return candies[Math.floor(Math.random() * candies.length)];
+        }
+
+        // Aggiungi event listener per il clic sulle celle
+        grid.addEventListener('click', handleClick);
+
+        // Funzione chiamata quando viene cliccata una cella
+        function handleClick(event) {
+            const cell = event.target;
+            const row = parseInt(cell.dataset.row);
+            const col = parseInt(cell.dataset.col);
+            console.log('Cella cliccata:', row, col);
+
+            if (!selectedCell) {
+                // Se non c'è una cella selezionata, memorizza la cella corrente come selezionata
+                selectedCell = { row, col };
+                cell.classList.add('selected');
+            } else {
+                // Se c'è già una cella selezionata, sposta la prima nella seconda
+                const { row: selectedRow, col: selectedCol } = selectedCell;
+                moveCandy(selectedRow, selectedCol, row, col);
+                // Resetta la cella selezionata
+                selectedCell = null;
+                const selectedCellElement = document.querySelector('.cell.selected');
+                if (selectedCellElement) {
+                    selectedCellElement.classList.remove('selected');
+                }
+                // Controlla le combinazioni dopo lo spostamento
+                checkCombinations();
+            }
+        }
+
+        // Funzione per spostare la caramella dalla prima cella alla seconda
+        function moveCandy(startRow, startCol, endRow, endCol) {
+            // Scambia le caramelle nella griglia
+            const temp = board[startRow][startCol];
+            board[startRow][startCol] = board[endRow][endCol];
+            board[endRow][endCol] = temp;
+
+            // Aggiorna la rappresentazione visuale della griglia
+            updateGrid();
+        }
+
+        // Aggiorna la rappresentazione visuale della griglia
+        function updateGrid() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cell => {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+                cell.innerHTML = board[row][col];
+            });
+        }
+
+        // Funzione per controllare se ci sono combinazioni di caramelle uguali
+        function checkCombinations() {
+            for (let i = 0; i < height; i++) {
+                for (let j = 0; j < width; j++) {
+                    const candy = board[i][j];
+                    if (candy !== '') {
+                        // Controllo orizzontale
+                        if (j + 2 < width && board[i][j + 1] === candy && board[i][j + 2] === candy) {
+                            animateAndRemoveCandies([[i, j], [i, j + 1], [i, j + 2]]);
+                        }
+                        // Controllo verticale
+                        if (i + 2 < height && board[i + 1][j] === candy && board[i + 2][j] === candy) {
+                            animateAndRemoveCandies([[i, j], [i + 1, j], [i + 2, j]]);
+                        }
+                        // Aggiungi controlli per le combinazioni diagonali, se necessario
+                    }
+                }
+            }
+        }
+
+        // Funzione per animare e rimuovere le caramelle coinvolte nelle combinazioni
+        function animateAndRemoveCandies(cellsToRemove) {
+            cellsToRemove.forEach(([row, col]) => {
+                const cell = grid.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+                cell.innerHTML = ''; // Rimuovi la caramella dalla cella
+                // Aggiungi un'animazione, ad esempio una dissolvenza
+                cell.style.transition = 'opacity 0.5s ease-out';
+                cell.style.opacity = '0';
+            });
+
+            // Rimuovi le caramelle dalla matrice
+            cellsToRemove.forEach(([row, col]) => {
+                board[row][col] = '';
+            });
+
+            // Attendi un po' per far vedere l'animazione prima di aggiornare la griglia
+            setTimeout(() => {
+                updateGrid();
+            }, 500);
+        }
+
+        createBoard(); // Crea la griglia all'avvio
+
+    </script>
+</body>
+
+</html>

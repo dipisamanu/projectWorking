@@ -4,11 +4,12 @@ body {
     align-items: center;
     height: 900px;
    
-    background-image: url('image.jpeg'); /* Specifica il percorso dell'immagine */
+    background-image
+    : url('image.jpeg'); /* Specifica il percorso dell'immagine */
     background-size: cover; /* Imposta la dimensione dell'immagine per coprire l'intera pagina */
     background-position: center; /* Centra l'immagine all'interno della pagina */
     margin: 0; /* Rimuove i margini predefiniti del body */
-    padding: 0; /* Rimuove il padding predefinito del body */
+    padding: 0; 
 }
 
 #grid {
