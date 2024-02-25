@@ -9,7 +9,7 @@ for (let i = 0; i < 5; i++) {
 document.getElementById("grid").style.gridTemplateColumns = "repeat(" + col + ", 1fr)"
 document.getElementById("grid").style.gridTemplateRows = "repeat(" + row + ", 1fr)"
 
-let imagePaths = ['bottle.jpeg', '/Users/ottaviodipisa/Documents/GitHub/projectWorking/cardboard.jpeg', '/Users/ottaviodipisa/Documents/GitHub/projectWorking/plastic.jpeg', '/Users/ottaviodipisa/Documents/GitHub/projectWorking/waste.jpeg']; 
+let imagePaths = ['bottle.jpeg', 'cardboard.jpeg', 'plastic.jpeg', 'waste.jpeg']; 
 
 function getRandomImagePath() {
     return imagePaths[Math.floor(Math.random() * imagePaths.length)];
