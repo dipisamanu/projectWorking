@@ -31,34 +31,43 @@ let selBox = null;
 function checkForAlignments() {
     let removed = false;
     for (let i = 0; i < row; i++) {
-        for (let j = 0; j < col - 2; j++) {
-            if (grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2]) {
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[i * col + j + 1].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[i * col + j + 2].getElementsByTagName('img')[0].src = '';
-                grid[i][j] = null;
-                grid[i][j + 1] = null;
-                grid[i][j + 2] = null;
+        for (let j = 0; j < col - 3; j++) {
+            if (grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2] && grid[i][j] === grid[i][j + 3]) {
+                for (let k = 0; k < 4; k++) {
+                    document.getElementsByClassName('box')[i * col + j + k].getElementsByTagName('img')[0].src = '';
+                    grid[i][j + k] = null;
+                }
+                removed = true;
+            } else if (j < col - 2 && grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2]) {
+                for (let k = 0; k < 3; k++) {
+                    document.getElementsByClassName('box')[i * col + j + k].getElementsByTagName('img')[0].src = '';
+                    grid[i][j + k] = null;
+                }
                 removed = true;
             }
         }
     }
     for (let j = 0; j < col; j++) {
-        for (let i = 0; i < row - 2; i++) {
-            if (grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j]) {
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[(i + 1) * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[(i + 2) * col + j].getElementsByTagName('img')[0].src = '';
-                grid[i][j] = null;
-                grid[i + 1][j] = null;
-                grid[i + 2][j] = null;
+        for (let i = 0; i < row - 3; i++) {
+            if (grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j] && grid[i][j] === grid[i + 3][j]) {
+                for (let k = 0; k < 4; k++) {
+                    document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
+                    grid[i + k][j] = null;
+                }
+                removed = true;
+            } else if (i < row - 2 && grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j]) {
+                for (let k = 0; k < 3; k++) {
+                    document.getElementsByClassName('box')[(i + k) * col + j].getElementsByTagName('img')[0].src = '';
+                    grid[i + k][j] = null;
+                }
                 removed = true;
             }
         }
     }
+    
     return removed;
-
 }
+
 function checkBoard() {
     let removed = false;
     for (let i = 0; i < row; i++) {
