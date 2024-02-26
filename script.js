@@ -6,10 +6,10 @@ document.getElementById("grid").style.gridTemplateColumns = "repeat(" + col + ",
 document.getElementById("grid").style.gridTemplateRows = "repeat(" + row + ", 1fr)"
 
 let percorsoImmagini = {
-    'bottle.png': 5,
-    'cardboard.png': 2,
-    'plastic.png': 3,
-    'waste.png': 1
+    'images/bottle.png': 5,
+    'images/cardboard.png': 2,
+    'images/plastic.png': 3,
+    'images/waste.png': 1
 };
 
 let imageKeys = Object.keys(percorsoImmagini);
