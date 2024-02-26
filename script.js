@@ -14,14 +14,19 @@ let percorsoImmagini = {
 
 let imageKeys = Object.keys(percorsoImmagini);
 
-function generaImmagine() {
-    return imageKeys[Math.floor(Math.random() * imageKeys.length)];
+function generaImmagine(i, j) {
+    let imagePath;
+    do {
+        imagePath = imageKeys[Math.floor(Math.random() * imageKeys.length)];
+    } while ((grid[i-1] && grid[i-1][j] === imagePath && grid[i-2] && grid[i-2][j] === imagePath) || 
+             (grid[i][j-1] === imagePath && grid[i][j-2] === imagePath));
+    return imagePath;
 }
 
 for (let i = 0; i < row; i++) {
     grid[i] = [];
     for (let j = 0; j < col; j++) {
-        let imagePath = generaImmagine();
+        let imagePath = generaImmagine(i, j);
         let s = "<div class='box' data-row='" + i + "' data-col='" + j + "' value='" + percorsoImmagini[imagePath] + "'><img src='" + imagePath + "' alt='Image'></div>";
         document.getElementById("grid").innerHTML += s;
         grid[i][j] = imagePath;
