@@ -18,8 +18,7 @@ function generaImmagine(i, j) {
     let imagePath;
     do {
         imagePath = imageKeys[Math.floor(Math.random() * imageKeys.length)];
-    } while ((grid[i-1] && grid[i-1][j] === imagePath && grid[i-2] && grid[i-2][j] === imagePath) || 
-             (grid[i][j-1] === imagePath && grid[i][j-2] === imagePath));
+    } while ((grid[i - 1] && grid[i - 1][j] === imagePath && grid[i - 2] && grid[i - 2][j] === imagePath) || (grid[i][j - 1] === imagePath && grid[i][j - 2] === imagePath));
     return imagePath;
 }
 
