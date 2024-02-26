@@ -5,24 +5,24 @@ let grid = [];
 document.getElementById("grid").style.gridTemplateColumns = "repeat(" + col + ", 1fr)"
 document.getElementById("grid").style.gridTemplateRows = "repeat(" + row + ", 1fr)"
 
-let imagePaths = {
+let percorsoImmagini = {
     'bottle.png': 5,
     'cardboard.png': 2,
     'plastic.png': 3,
     'waste.png': 1
 };
 
-let imageKeys = Object.keys(imagePaths);
+let imageKeys = Object.keys(percorsoImmagini);
 
-function getRandomImagePath() {
+function generaImmagine() {
     return imageKeys[Math.floor(Math.random() * imageKeys.length)];
 }
 
 for (let i = 0; i < row; i++) {
     grid[i] = [];
     for (let j = 0; j < col; j++) {
-        let imagePath = getRandomImagePath();
-        let s = "<div class='box' data-row='" + i + "' data-col='" + j + "' value='" + imagePaths[imagePath] + "'><img src='" + imagePath + "' alt='Image'></div>";
+        let imagePath = generaImmagine();
+        let s = "<div class='box' data-row='" + i + "' data-col='" + j + "' value='" + percorsoImmagini[imagePath] + "'><img src='" + imagePath + "' alt='Image'></div>";
         document.getElementById("grid").innerHTML += s;
         grid[i][j] = s;
     }
