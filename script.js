@@ -57,7 +57,6 @@ function checkForAlignments() {
         }
     }
     return removed;
-
 }
 function checkBoard() {
     let removed = false;
