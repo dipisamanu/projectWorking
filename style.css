@@ -3,8 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 900px;
-   
-    background-image: url('image.jpeg'); 
+    background-color: blue; 
     background-size: cover; 
     background-position: center; 
     margin: 0; 
