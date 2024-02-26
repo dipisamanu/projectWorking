@@ -24,7 +24,7 @@ for (let i = 0; i < row; i++) {
         let imagePath = generaImmagine();
         let s = "<div class='box' data-row='" + i + "' data-col='" + j + "' value='" + percorsoImmagini[imagePath] + "'><img src='" + imagePath + "' alt='Image'></div>";
         document.getElementById("grid").innerHTML += s;
-        grid[i][j] = s;
+        grid[i][j] = imagePath;
     }
 }
 let boxes = document.getElementsByClassName('box');
@@ -44,8 +44,8 @@ for (let i = 0; i < boxes.length; i++) {
                 let temp = grid[selRow][selCol];
                 grid[selRow][selCol] = grid[row][col];
                 grid[row][col] = temp;
-                selBox.innerHTML = grid[selRow][selCol];
-                this.innerHTML = grid[row][col];
+                selBox.getElementsByTagName('img')[0].src = grid[selRow][selCol];
+                this.getElementsByTagName('img')[0].src = grid[row][col];
             }
             selBox.classList.remove('selected');
             selBox = null;
