@@ -37,7 +37,7 @@ for (let i = 0; i < boxes.length; i++) {
         let value = this.getAttribute('value');
         console.log('Hai fatto clic sulla casella:', row, col, 'con valore:', value);
 
-        if (selBox) {
+        if (selBox != null) {
             let selRow = parseInt(selBox.getAttribute('data-row'));
             let selCol = parseInt(selBox.getAttribute('data-col'));
             if ((Math.abs(selRow - row) === 1 && selCol === col) || (Math.abs(selCol - col) === 1 && selRow === row)) {
@@ -47,8 +47,10 @@ for (let i = 0; i < boxes.length; i++) {
                 selBox.innerHTML = grid[selRow][selCol];
                 this.innerHTML = grid[row][col];
             }
+            selBox.classList.remove('selected');
             selBox = null;
         } else {
+            this.classList.add('selected');
             selBox = this;
         }
     });
