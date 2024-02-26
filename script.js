@@ -28,11 +28,28 @@ for (let i = 0; i < row; i++) {
     }
 }
 let boxes = document.getElementsByClassName('box');
+let selBox = null;
+
 for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('click', function () {
-        let row = this.getAttribute('data-row');
-        let col = this.getAttribute('data-col');
+        let row = parseInt(this.getAttribute('data-row'));
+        let col = parseInt(this.getAttribute('data-col'));
         let value = this.getAttribute('value');
         console.log('Hai fatto clic sulla casella:', row, col, 'con valore:', value);
+
+        if (selBox) {
+            let selRow = parseInt(selBox.getAttribute('data-row'));
+            let selCol = parseInt(selBox.getAttribute('data-col'));
+            if ((Math.abs(selRow - row) === 1 && selCol === col) || (Math.abs(selCol - col) === 1 && selRow === row)) {
+                let temp = grid[selRow][selCol];
+                grid[selRow][selCol] = grid[row][col];
+                grid[row][col] = temp;
+                selBox.innerHTML = grid[selRow][selCol];
+                this.innerHTML = grid[row][col];
+            }
+            selBox = null;
+        } else {
+            selBox = this;
+        }
     });
 }
