@@ -64,10 +64,9 @@ function checkForAlignments() {
             }
         }
     }
-    
+
     return removed;
 }
-
 function checkBoard() {
     let removed = false;
     for (let i = 0; i < row; i++) {
@@ -98,7 +97,6 @@ function checkBoard() {
     }
     return removed;
 }
-
 function dropCells() {
     for (let j = 0; j < col; j++) {
         let emptyRows = [];
@@ -113,38 +111,5 @@ function dropCells() {
                 document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
             }
         }
-        for (let i = 0; i < emptyRows.length; i++) {
-            grid[emptyRows[i]][j] = generaImmagine(emptyRows[i], j);
-            document.getElementsByClassName('box')[emptyRows[i] * col + j].getElementsByTagName('img')[0].src = grid[emptyRows[i]][j];
-        }
     }
-}
-
-for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener('click', function () {
-        let row = parseInt(this.getAttribute('data-row'));
-        let col = parseInt(this.getAttribute('data-col'));
-        let value = this.getAttribute('value');
-        console.log('Hai fatto clic sulla casella:', row, col, 'con valore:', value);
-        if (selBox != null) {
-            let selRow = parseInt(selBox.getAttribute('data-row'));
-            let selCol = parseInt(selBox.getAttribute('data-col'));
-            if ((Math.abs(selRow - row) === 1 && selCol === col) || (Math.abs(selCol - col) === 1 && selRow === row)) {
-                let temp = grid[selRow][selCol];
-                grid[selRow][selCol] = grid[row][col];
-                grid[row][col] = temp;
-                selBox.getElementsByTagName('img')[0].src = grid[selRow][selCol];
-                this.getElementsByTagName('img')[0].src = grid[row][col];
-                while (checkBoard()) {
-                    dropCells();
-                }
-            }
-            selBox.classList.remove('selected');
-            selBox = null;
-        } else {
-            this.classList.add('selected');
-            selBox = this;
-        }
-    });
-
 }
