@@ -13,7 +13,7 @@ let imageKeys = Object.keys(percorsoImmagini);
 function generaImmagine(i, j) {
     let imagePath;
     do {
-        imagePath = imageKeys[Math.floor(Math.random() * imageKeys.length)];
+        imagePath = imageKeys[Math.floor(Math.random() * 4)];
     } while ((grid[i - 1] && grid[i - 1][j] === imagePath && grid[i - 2] && grid[i - 2][j] === imagePath) || (grid[i][j - 1] === imagePath && grid[i][j - 2] === imagePath));
     return imagePath;
 }
@@ -28,88 +28,6 @@ for (let i = 0; i < row; i++) {
 }
 let boxes = document.getElementsByClassName('box');
 let selBox = null;
-function checkForAlignments() {
-    let removed = false;
-    for (let i = 0; i < row; i++) {
-        for (let j = 0; j < col - 2; j++) {
-            if (grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2]) {
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[i * col + j + 1].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[i * col + j + 2].getElementsByTagName('img')[0].src = '';
-                grid[i][j] = null;
-                grid[i][j + 1] = null;
-                grid[i][j + 2] = null;
-                removed = true;
-            }
-        }
-    }
-    for (let j = 0; j < col; j++) {
-        for (let i = 0; i < row - 2; i++) {
-            if (grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j]) {
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[(i + 1) * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[(i + 2) * col + j].getElementsByTagName('img')[0].src = '';
-                grid[i][j] = null;
-                grid[i + 1][j] = null;
-                grid[i + 2][j] = null;
-                removed = true;
-            }
-        }
-    }
-    return removed;
-}
-function checkBoard() {
-    let removed = false;
-    for (let i = 0; i < row; i++) {
-        for (let j = 0; j < col - 2; j++) {
-            if (grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2]) {
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[i * col + j + 1].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[i * col + j + 2].getElementsByTagName('img')[0].src = '';
-                grid[i][j] = null;
-                grid[i][j + 1] = null;
-                grid[i][j + 2] = null;
-                removed = true;
-            }
-        }
-    }
-    for (let j = 0; j < col; j++) {
-        for (let i = 0; i < row - 2; i++) {
-            if (grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j]) {
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[(i + 1) * col + j].getElementsByTagName('img')[0].src = '';
-                document.getElementsByClassName('box')[(i + 2) * col + j].getElementsByTagName('img')[0].src = '';
-                grid[i][j] = null;
-                grid[i + 1][j] = null;
-                grid[i + 2][j] = null;
-                removed = true;
-            }
-        }
-    }
-    return removed;
-}
-
-function dropCells() {
-    for (let j = 0; j < col; j++) {
-        let emptyRows = [];
-        for (let i = row - 1; i >= 0; i--) {
-            if (!grid[i][j]) {
-                emptyRows.push(i);
-            } else if (emptyRows.length > 0) {
-                let newRow = emptyRows.pop();
-                grid[newRow][j] = grid[i][j];
-                grid[i][j] = null;
-                document.getElementsByClassName('box')[newRow * col + j].getElementsByTagName('img')[0].src = grid[newRow][j];
-                document.getElementsByClassName('box')[i * col + j].getElementsByTagName('img')[0].src = '';
-            }
-        }
-        for (let i = 0; i < emptyRows.length; i++) {
-            grid[emptyRows[i]][j] = generaImmagine(emptyRows[i], j);
-            document.getElementsByClassName('box')[emptyRows[i] * col + j].getElementsByTagName('img')[0].src = grid[emptyRows[i]][j];
-        }
-    }
-}
-
 for (let i = 0; i < boxes.length; i++) {
     boxes[i].addEventListener('click', function () {
         let row = parseInt(this.getAttribute('data-row'));
@@ -125,8 +43,8 @@ for (let i = 0; i < boxes.length; i++) {
                 grid[row][col] = temp;
                 selBox.getElementsByTagName('img')[0].src = grid[selRow][selCol];
                 this.getElementsByTagName('img')[0].src = grid[row][col];
-                while (checkBoard()) {
-                    dropCells();
+                while (checkThree()) {
+                    slideCandy();
                 }
             }
             selBox.classList.remove('selected');
@@ -137,4 +55,65 @@ for (let i = 0; i < boxes.length; i++) {
         }
     });
 
+}
+function crushCandy() {
+    //crushFive();
+    //crushFour();
+    crushThree();
+    document.getElementById("score").innerText = score;
+
+}
+function checkThree() {
+    for (let r = 0; r < row; r++) {
+        for (let c = 0; c < col - 2; c++) {
+            let box1 = document.getElementsByClassName('box')[r * col + c].getElementsByTagName('img')[0];
+            let box2 = document.getElementsByClassName('box')[r * col + c + 1].getElementsByTagName('img')[0];
+            let box3 = document.getElementsByClassName('box')[r * col + c + 2].getElementsByTagName('img')[0];
+            if (box1.src.includes("blank") || box2.src.includes("blank") || box3.src.includes("blank")) {
+                continue; // Se una delle immagini è "blank", passa alla prossima iterazione
+            }
+            if (box1.src === box2.src && box2.src === box3.src) {
+                box1.src = "images/blank.png";
+                box2.src = "images/blank.png";
+                box3.src = "images/blank.png";
+            }
+        }
+    }
+
+    for (let c = 0; c < col; c++) {
+        for (let r = 0; r < row - 2; r++) {
+            let box1 = document.getElementsByClassName('box')[r * col + c].getElementsByTagName('img')[0];
+            let box2 = document.getElementsByClassName('box')[(r + 1) * col + c].getElementsByTagName('img')[0];
+            let box3 = document.getElementsByClassName('box')[(r + 2) * col + c].getElementsByTagName('img')[0];
+            if (box1.src.includes("blank") || box2.src.includes("blank") || box3.src.includes("blank")) {
+                continue; // Se una delle immagini è "blank", passa alla prossima iterazione
+            }
+            if (box1.src === box2.src && box2.src === box3.src) {
+                box1.src = "images/blank.png";
+                box2.src = "images/blank.png";
+                box3.src = "images/blank.png";
+            }
+        }
+    }
+}
+function slideCandy() {
+    for (let c = 0; c < col; c++) {
+        let emptySpaces = 0; 
+        for (let r = row - 1; r >= 0; r--) {
+            if (grid[r][c].src.includes("blank")) {
+                emptySpaces++;
+            } else if (emptySpaces > 0) {
+                let newIndex = r + emptySpaces;
+                grid[newIndex][c].src = grid[r][c].src; 
+                grid[r][c].src = "images/blank.png";
+            }
+        }
+    }
+}
+function generateCandy() {
+    for (let c = 0; c < col;  c++) {
+        if (grid[0][c].src.includes("blank")) {
+            grid[0][c].src = "./images/" + generaImmagine() + ".png";
+        }
+    }
 }
