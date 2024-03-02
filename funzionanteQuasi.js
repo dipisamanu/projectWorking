@@ -9,7 +9,7 @@ let percorsoImmagini = {
     'images/plastic.png': 3,
     'images/waste.png': 1
 };
-let imageKeys = Object.keys(percorsoImmagini);
+let imageKeys = Object.keys(percorsoImmagini); //prende il riferimento della key di quell'oggetto
 function generaImmagine(i, j) {
     let imagePath;
     do {
