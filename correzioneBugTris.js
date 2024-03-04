@@ -3,16 +3,19 @@ let rows = 5;
 let columns = 5;
 let grid = [];
 
-function random(i, j) {
+function random() {
     let randomImage = oggetti[Math.floor(Math.random() * 4)];
-    return randomImage;
+    return "images/" + randomImage + ".png";
 }
+
 function genera() {
     for (let i = 0; i < rows; i++) {
         grid[i] = [];
-        for (let j = 0; j < rows; j++) { 
-            
+        for (let j = 0; j < columns; j++) { 
+            grid[i][j] = random();
         }
-
     }
+    return grid;
 }
+
+console.log(genera());
