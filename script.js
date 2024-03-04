@@ -5,6 +5,17 @@ let grid = [];
 document.getElementById("grid").style.gridTemplateColumns = "repeat(" + columns + ", 1fr)";
 document.getElementById("grid").style.gridTemplateRows = "repeat(" + rows + ", 1fr)";
 
+window.onload = function() {
+    startGame();
+
+    //1/10th of a second
+    window.setInterval(function(){
+        crushCandy();
+        slideCandy();
+        generateCandy();
+    }, 100);
+}
+
 function random() {
     let randomImage = oggetti[Math.floor(Math.random() * 4)];
     return "images/" + randomImage + ".png";
