@@ -11,7 +11,7 @@ function random() {
 function genera() {
     for (let i = 0; i < rows; i++) {
         grid[i] = [];
-        for (let j = 0; j < columns; j++) { 
+        for (let j = 0; j < columns; j++) {
             grid[i][j] = random();
         }
     }
