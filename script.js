@@ -43,3 +43,42 @@ function visualizzaGriglia() {
 }
 
 visualizzaGriglia();
+
+function crushCandy() {
+    //crushFive();
+    //crushFour();
+    crushThree();
+
+}
+
+function crushThree() {
+    //check rows
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns-2; c++) {
+            let candy1 = grid[r][c];
+            let candy2 = grid[r][c+1];
+            let candy3 = grid[r][c+2];
+            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank")) {
+                candy1.src = "blank.png";
+                candy2.src = "blank.png";
+                candy3.src = "blank.png";
+                score += 30;
+            }
+        }
+    }
+
+    //check columns
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows-2; r++) {
+            let candy1 = grid[r][c];
+            let candy2 = grid[r+1][c];
+            let candy3 = grid[r+2][c];
+            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank")) {
+                candy1.src = "blank.png";
+                candy2.src = "blank.png";
+                candy3.src = "blank.png";
+                score += 30;
+            }
+        }
+    }
+}
