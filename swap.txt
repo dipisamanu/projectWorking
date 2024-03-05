@@ -1,0 +1,27 @@
+for (let i = 0; i < boxes.length; i++) {
+    boxes[i].addEventListener('click', function () {
+        let row = parseInt(this.getAttribute('data-row'));
+        let col = parseInt(this.getAttribute('data-col'));
+        let value = this.getAttribute('value');
+        console.log('Hai fatto clic sulla casella:', row, col, 'con valore:', value);
+        if (selBox != null) {
+            let selRow = parseInt(selBox.getAttribute('data-row'));
+            let selCol = parseInt(selBox.getAttribute('data-col'));
+            if ((Math.abs(selRow - row) === 1 && selCol === col) || (Math.abs(selCol - col) === 1 && selRow === row)) {
+                let temp = grid[selRow][selCol];
+                grid[selRow][selCol] = grid[row][col];
+                grid[row][col] = temp;
+                selBox.getElementsByTagName('img')[0].src = grid[selRow][selCol];
+                this.getElementsByTagName('img')[0].src = grid[row][col];
+                while (checkForAlignments()) {
+                    dropCells();
+                }
+            }
+            selBox.classList.remove('selected');
+            selBox = null;
+        } else {
+            this.classList.add('selected');
+            selBox = this;
+        }
+    });
+}
