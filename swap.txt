@@ -1,27 +1,40 @@
-for (let i = 0; i < boxes.length; i++) {
-    boxes[i].addEventListener('click', function () {
-        let row = parseInt(this.getAttribute('data-row'));
-        let col = parseInt(this.getAttribute('data-col'));
-        let value = this.getAttribute('value');
-        console.log('Hai fatto clic sulla casella:', row, col, 'con valore:', value);
-        if (selBox != null) {
-            let selRow = parseInt(selBox.getAttribute('data-row'));
-            let selCol = parseInt(selBox.getAttribute('data-col'));
-            if ((Math.abs(selRow - row) === 1 && selCol === col) || (Math.abs(selCol - col) === 1 && selRow === row)) {
-                let temp = grid[selRow][selCol];
-                grid[selRow][selCol] = grid[row][col];
-                grid[row][col] = temp;
-                selBox.getElementsByTagName('img')[0].src = grid[selRow][selCol];
-                this.getElementsByTagName('img')[0].src = grid[row][col];
-                while (checkForAlignments()) {
-                    dropCells();
-                }
+function checkThree() {
+    let removed = false;
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col - 2; j++) {
+            if (grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2]) {
+                rimuoviCelle(i, j, 'orizzontale');
+                removed = true;
             }
-            selBox.classList.remove('selected');
-            selBox = null;
-        } else {
-            this.classList.add('selected');
-            selBox = this;
         }
-    });
+    }
+    for (let j = 0; j < col; j++) {
+        for (let i = 0; i < row - 2; i++) {
+            if (grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j]) {
+                rimuoviCelle(i, j, 'verticale');
+                removed = true;
+            }
+        }
+    }
+    return removed;
+}
+function checkFour() {
+    let removed = false;
+    for (let i = 0; i < row; i++) {
+        for (let j = 0; j < col - 3; j++) {
+            if (grid[i][j] === grid[i][j + 1] && grid[i][j] === grid[i][j + 2] && grid[i][j] === grid[i][j + 3]) {
+                rimuoviCelle(i, j, 'orizzontale');
+                removed = true;
+            }
+        }
+    }
+    for (let j = 0; j < col; j++) {
+        for (let i = 0; i < row - 3; i++) {
+            if (grid[i][j] === grid[i + 1][j] && grid[i][j] === grid[i + 2][j] && grid[i][j] === grid[i + 3][j]) {
+                rimuoviCelle(i, j, 'verticale');
+                removed = true;
+            }
+        }
+    }
+    return removed;
 }

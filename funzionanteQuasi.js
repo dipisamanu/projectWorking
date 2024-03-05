@@ -4,7 +4,6 @@ let grid = [];
 let gridElement = document.getElementById("grid");
 gridElement.style.gridTemplateColumns = "repeat(" + col + ", 1fr)";
 gridElement.style.gridTemplateRows = "repeat(" + row + ", 1fr)";
-
 let percorsoImmagini = ['images/bottle.png', 'images/cardboard.png', 'images/plastic.png', 'images/waste.png', 'images/blank.png'];
 
 function generaImmagine(i, j) {
@@ -12,8 +11,7 @@ function generaImmagine(i, j) {
     do {
         imagePath = percorsoImmagini[Math.floor(Math.random() * (percorsoImmagini.length-1))];
     } while (
-        (grid[i - 1] && grid[i - 1][j] === imagePath && grid[i - 2] && grid[i - 2][j] === imagePath) ||
-        (grid[i] && grid[i][j - 1] === imagePath && grid[i][j - 2] === imagePath)
+        (grid[i - 1] && grid[i - 1][j] === imagePath && grid[i - 2] && grid[i - 2][j] === imagePath) || (grid[i] && grid[i][j - 1] === imagePath && grid[i][j - 2] === imagePath)
     );
     return imagePath;
 }
