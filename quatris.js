@@ -1,10 +1,10 @@
-const row = 5;
-const col = 5;
-const grid = [];
-const gridElement = document.getElementById("grid");
+let row = 5;
+let col = 5;
+let grid = [];
+let gridElement = document.getElementById("grid");
 gridElement.style.gridTemplateColumns = "repeat(" + col + ", 1fr)";
 gridElement.style.gridTemplateRows = "repeat(" + row + ", 1fr)";
-const percorsoImmagini = ['images/bottle.png', 'images/cardboard.png', 'images/plastic.png', 'images/waste.png', 'images/blank.png'];
+let percorsoImmagini = ['images/bottle.png', 'images/cardboard.png', 'images/plastic.png', 'images/waste.png', 'images/blank.png'];
 
 function generaImmagine(i, j) {
     let imagePath;
@@ -47,6 +47,7 @@ function checkForAlignments() {
             }
         }
     }
+    
     return removed;
 }
 
