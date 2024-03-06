@@ -45,7 +45,7 @@ function startGame() {
             });
             cell.addEventListener("click", function () {
                 if (cell.src.includes("amoreNatura")) {
-                    removeAttornoCells(r, c);
+                    amoreNatura(r, c);
                 }
             });
             document.getElementById("board").append(cell);
@@ -394,7 +394,7 @@ function potereDelRiciclo(row, column) {
     }
 }
 
-function removeAttornoCells(row, column) {
+function amoreNatura(row, column) {
     // Verifica se le celle adiacenti esistono prima di accedere ad esse
     if (row < 0 || row >= rows || column < 0 || column >= columns) {
         return;
@@ -408,7 +408,10 @@ function removeAttornoCells(row, column) {
             if (row + i >= 0 && row + i < rows && column + j >= 0 && column + j < columns) {
                 let candy = board[row + i][column + j];
                 if (candy.src.includes("amoreNatura")) {
-                    removeAttornoCells(row + i, column + j);
+                    amoreNatura(row + i, column + j);
+                }
+                if (candy.src.includes("riciclo")) {
+                    potereDelRiciclo(row + i, column + j);
                 }
                 calcoloScore(candy);
                 candy.src = "images/blank.png";
