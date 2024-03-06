@@ -349,6 +349,7 @@ function removeAdjacentCells(row, column) {
         candy4.src = "images/blank.png";
     }
 }
+
 function calcoloScore(tipo){
     if(tipo.src.includes("waste")){
         score += 1
