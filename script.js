@@ -437,13 +437,24 @@ function calcoloScore(tipo) {
 }
 
 function aggiornaBarre() {
+    let tuttiRaggiunti = true;
     for (let elemento in numElementi) {
         let percentuale = (numElementi[elemento] / 50) * 100;
         let barra = document.getElementById("barra-" + elemento);
         let count = document.getElementById("count-" + elemento);
         if (barra && count) {
             barra.style.width = percentuale + "%";
+            barra.style.opacity = percentuale / 100;
             count.textContent = numElementi[elemento] + "/50";
         }
+        if (numElementi[elemento] < 51) {
+            tuttiRaggiunti = false;
+        }
+    }
+    if (tuttiRaggiunti) {
+        window.location.href = "vittoria.html";
     }
 }
+
+
+

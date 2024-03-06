@@ -27,13 +27,16 @@ body {
     display: flex;
     align-items: center;
     border: 1px solid gray;
+    margin: auto; /* Centra il contenitore sulla pagina */
+    width: 700px; /* Ad esempio, se la tua griglia è larga 500px */
     margin-bottom: 10px;
-    width: 520px; /* Ad esempio, se la tua griglia è larga 500px */
 }
+
 .bar-container img {
     width: 50px;
     height: 50px;
 }
+
 .barra {
     flex-grow: 1;
     height: 20px;
