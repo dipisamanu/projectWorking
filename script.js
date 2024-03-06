@@ -26,16 +26,24 @@ function startGame() {
             let cell = document.createElement("img");
             cell.id = r.toString() + "-" + c.toString();
             cell.src = "images/" + randomCella() + ".png";
-            cell.addEventListener("dragstart", dragStart); //click on a candy, initialize drag process
-            cell.addEventListener("dragover", dragOver);  //clicking on candy, moving mouse to drag the candy
-            cell.addEventListener("dragenter", dragEnter); //dragging candy onto another candy
-            cell.addEventListener("dragleave", dragLeave); //leave candy over another candy
-            cell.addEventListener("drop", dragDrop); //dropping a candy over another candy
-            cell.addEventListener("dragend", dragEnd); //after drag process completed, we swap cells
+            cell.addEventListener("dragstart", dragStart); 
+            cell.addEventListener("dragover", dragOver);  
+            cell.addEventListener("dragenter", dragEnter); 
+            cell.addEventListener("dragleave", dragLeave); 
+            cell.addEventListener("drop", dragDrop); 
+            cell.addEventListener("dragend", dragEnd); 
             document.getElementById("board").append(cell);
             row.push(cell);
         }
         board.push(row);
+    }
+    // Elimina eventuali combinazioni di tris o quadris
+    while (checkValid()) {
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < columns; c++) {
+                board[r][c].src = "images/" + randomCella() + ".png";
+            }
+        }
     }
     console.log(board);
 }
@@ -295,6 +303,11 @@ function caduta() {
 }
 
 function genera() {
+    // Check if there are any matches before generating new cells
+    if (checkValid()) {
+        return;
+    }
+
     for (let c = 0; c < columns; c++) {
         if (board[0][c].src.includes("blank")) {
             board[0][c].src = "images/" + randomCella() + ".png";
