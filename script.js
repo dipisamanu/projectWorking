@@ -5,14 +5,20 @@ let columns = 5;
 let score = 0;
 let selCell;
 let otherCell;
-
+let numElementi = {
+    "vetro" : 0,
+    "carta" : 0,
+    "secco" : 0,
+    "plastica" : 0
+}
 window.onload = function () {
     startGame();
     window.setInterval(function () {
         distruggi();
         caduta();
         genera();
-    }, 250);
+        aggiornaBarra();
+    }, 200);
 }
 
 function randomCella() {
@@ -34,7 +40,12 @@ function startGame() {
             cell.addEventListener("dragend", dragEnd);
             cell.addEventListener("click", function () {
                 if (cell.src.includes("riciclo")) {
-                    removeAdjacentCells(r, c);
+                    potereDelRiciclo(r, c);
+                }
+            });
+            cell.addEventListener("click", function () {
+                if (cell.src.includes("amoreNatura")) {
+                    removeAttornoCells(r, c);
                 }
             });
             document.getElementById("board").append(cell);
@@ -109,7 +120,6 @@ function distruggi() {
     crushFour();
     crushThree();
     document.getElementById("score").innerText = score;
-
 }
 
 function crushFive() {
@@ -121,15 +131,19 @@ function crushFive() {
             let candy3 = board[r][c + 2];
             let candy4 = board[r][c + 3];
             let candy5 = board[r][c + 4];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo") && !candy1.src.includes("amoreNatura")) {
                 if (candy1.src.includes("waste")) {
                     score += (1 * 5)
+                    numElementi.secco += 5;
                 } else if (candy1.src.includes("plastic")) {
                     score += (3 * 5)
+                    numElementi.plastica += 5;
                 } else if (candy1.src.includes("cardboard")) {
                     score += (2 * 5)
+                    numElementi.carta += 5;
                 } else if (candy1.src.includes("glass")) {
                     score += (5 * 5)
+                    numElementi.vetro += 5;
                 }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
@@ -139,7 +153,6 @@ function crushFive() {
             }
         }
     }
-
     //check columns
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 4; r++) {
@@ -148,15 +161,19 @@ function crushFive() {
             let candy3 = board[r + 2][c];
             let candy4 = board[r + 3][c];
             let candy5 = board[r + 4][c];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo") && !candy1.src.includes("amoreNatura")) {
                 if (candy1.src.includes("waste")) {
                     score += (1 * 5)
+                    numElementi.secco += 5;
                 } else if (candy1.src.includes("plastic")) {
                     score += (3 * 5)
+                    numElementi.plastica += 5;
                 } else if (candy1.src.includes("cardboard")) {
                     score += (2 * 5)
+                    numElementi.carta += 5;
                 } else if (candy1.src.includes("glass")) {
                     score += (5 * 5)
+                    numElementi.vetro += 5;
                 }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
@@ -175,15 +192,19 @@ function crushFour() {
             let candy2 = board[r][c + 1];
             let candy3 = board[r][c + 2];
             let candy4 = board[r][c + 3];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo") && !candy1.src.includes("amoreNatura")) {
                 if (candy1.src.includes("waste")) {
                     score += (1 * 4)
+                    numElementi.secco += 4;
                 } else if (candy1.src.includes("plastic")) {
                     score += (3 * 4)
+                    numElementi.plastica += 4;
                 } else if (candy1.src.includes("cardboard")) {
                     score += (2 * 4)
+                    numElementi.carta += 4;
                 } else if (candy1.src.includes("glass")) {
                     score += (5 * 4)
+                    numElementi.vetro += 4;
                 }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
@@ -198,15 +219,19 @@ function crushFour() {
             let candy2 = board[r + 1][c];
             let candy3 = board[r + 2][c];
             let candy4 = board[r + 3][c];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo") && !candy1.src.includes("amoreNatura")) {
                 if (candy1.src.includes("waste")) {
                     score += (1 * 4)
+                    numElementi.secco += 4;
                 } else if (candy1.src.includes("plastic")) {
                     score += (3 * 4)
+                    numElementi.plastica += 4;
                 } else if (candy1.src.includes("cardboard")) {
                     score += (2 * 4)
+                    numElementi.carta += 4;
                 } else if (candy1.src.includes("glass")) {
                     score += (5 * 4)
+                    numElementi.vetro += 4;
                 }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
@@ -223,15 +248,19 @@ function crushThree() {
             let candy1 = board[r][c];
             let candy2 = board[r][c + 1];
             let candy3 = board[r][c + 2];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo") && !candy1.src.includes("amoreNatura")) {
                 if (candy1.src.includes("waste")) {
                     score += (1 * 3)
+                    numElementi.secco += 3;
                 } else if (candy1.src.includes("plastic")) {
                     score += (3 * 3)
+                    numElementi.plastica += 3;
                 } else if (candy1.src.includes("cardboard")) {
                     score += (2 * 3)
+                    numElementi.carta += 3;
                 } else if (candy1.src.includes("glass")) {
                     score += (5 * 3)
+                    numElementi.vetro += 3;
                 }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
@@ -245,15 +274,19 @@ function crushThree() {
             let candy1 = board[r][c];
             let candy2 = board[r + 1][c];
             let candy3 = board[r + 2][c];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo") && !candy1.src.includes("amoreNatura")) {
                 if (candy1.src.includes("waste")) {
                     score += (1 * 3)
+                    numElementi.secco += 3;
                 } else if (candy1.src.includes("plastic")) {
                     score += (3 * 3)
+                    numElementi.plastica += 3;
                 } else if (candy1.src.includes("cardboard")) {
                     score += (2 * 3)
+                    numElementi.carta += 3;
                 } else if (candy1.src.includes("glass")) {
                     score += (5 * 3)
+                    numElementi.vetro += 3;
                 }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
@@ -263,7 +296,6 @@ function crushThree() {
         }
     }
 }
-
 
 function checkValid() {
     //check rows
@@ -319,7 +351,7 @@ function genera() {
     }
 }
 
-function removeAdjacentCells(row, column) {
+function potereDelRiciclo(row, column) {
     // Verifica se le celle adiacenti esistono prima di accedere ad esse
     if (row < 0 || row >= rows || column < 0 || column >= columns) {
         return;
@@ -331,7 +363,7 @@ function removeAdjacentCells(row, column) {
     if (row + 1 < rows) {
         let candy1 = board[row + 1][column];
         if (candy1.src.includes("riciclo")) {
-            removeAdjacentCells(row + 1, column);
+            potereDelRiciclo(row + 1, column);
         }
         calcoloScore(candy1);
         candy1.src = "images/blank.png";
@@ -339,7 +371,7 @@ function removeAdjacentCells(row, column) {
     if (column + 1 < columns) {
         let candy2 = board[row][column + 1];
         if (candy2.src.includes("riciclo")) {
-            removeAdjacentCells(row, column + 1);
+            potereDelRiciclo(row, column + 1);
         }
         calcoloScore(candy2);
         candy2.src = "images/blank.png";
@@ -347,7 +379,7 @@ function removeAdjacentCells(row, column) {
     if (row - 1 >= 0) {
         let candy3 = board[row - 1][column];
         if (candy3.src.includes("riciclo")) {
-            removeAdjacentCells(row - 1, column);
+            potereDelRiciclo(row - 1, column);
         }
         calcoloScore(candy3);
         candy3.src = "images/blank.png";
@@ -355,22 +387,52 @@ function removeAdjacentCells(row, column) {
     if (column - 1 >= 0) {
         let candy4 = board[row][column - 1];
         if (candy4.src.includes("riciclo")) {
-            removeAdjacentCells(row, column - 1);
+            potereDelRiciclo(row, column - 1);
         }
         calcoloScore(candy4);
         candy4.src = "images/blank.png";
     }
 }
 
+function removeAttornoCells(row, column) {
+    // Verifica se le celle adiacenti esistono prima di accedere ad esse
+    if (row < 0 || row >= rows || column < 0 || column >= columns) {
+        return;
+    }
+    // Rimuovi le celle adiacenti
+    let candy0 = board[row][column];
+    candy0.src = "images/blank.png";
+    // Verifica la presenza di celle adiacenti e rimuovile se esistono
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            if (row + i >= 0 && row + i < rows && column + j >= 0 && column + j < columns) {
+                let candy = board[row + i][column + j];
+                if (candy.src.includes("amoreNatura")) {
+                    removeAttornoCells(row + i, column + j);
+                }
+                calcoloScore(candy);
+                candy.src = "images/blank.png";
+            }
+        }
+    }
+}
 
 function calcoloScore(tipo) {
     if (tipo.src.includes("waste")) {
         score += 1
+        numElementi.secco++;
     } else if (tipo.src.includes("glass")) {
         score += 5
+        numElementi.vetro++;
     } else if (tipo.src.includes("cardboard")) {
         score += 2
+        numElementi.carta++;
     } else if (tipo.src.includes("plastic")) {
         score += 3
+        numElementi.plastica++;
     }
+}
+
+function aggiornaBarra(){
+    console.log(numElementi);
 }
