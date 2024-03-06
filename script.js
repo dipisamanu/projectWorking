@@ -5,11 +5,12 @@ let columns = 5;
 let score = 0;
 let selCell;
 let otherCell;
+let dragSenzaMosse = 0;
 let numElementi = {
-    "vetro" : 0,
-    "carta" : 0,
-    "secco" : 0,
-    "plastica" : 0
+    "vetro": 0,
+    "carta": 0,
+    "secco": 0,
+    "plastica": 0
 }
 window.onload = function () {
     startGame();
@@ -107,11 +108,17 @@ function dragEnd() {
         otherTile.src = selImg;
         let validMove = checkValid();
         if (!validMove) {
+            dragSenzaMosse++;
             let selImg = selCell.src;
             let otherImg = otherTile.src;
             selCell.src = otherImg;
             otherTile.src = selImg;
+        } else {
+            dragSenzaMosse = 0;
         }
+    }
+    if (dragSenzaMosse >= 3) {
+        window.location.href = "game_over.html";
     }
 }
 
