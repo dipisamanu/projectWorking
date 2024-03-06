@@ -3,7 +3,7 @@ let board = [];
 let rows = 5;
 let columns = 5;
 let score = 0;
-let currCell;
+let selCell;
 let otherCell;
 
 window.onload = function () {
@@ -42,7 +42,7 @@ function startGame() {
 
 function dragStart() {
     //this refers to cell that was clicked on for dragging
-    currCell = this;
+    selCell = this;
 }
 
 function dragOver(e) {
@@ -53,9 +53,7 @@ function dragEnter(e) {
     e.preventDefault();
 }
 
-function dragLeave() {
-
-}
+function dragLeave() {}
 
 function dragDrop() {
     //this refers to the target cell that was dropped on
@@ -64,13 +62,13 @@ function dragDrop() {
 
 function dragEnd() {
 
-    if (currCell.src.includes("blank") || otherTile.src.includes("blank")) {
+    if (selCell.src.includes("blank") || otherTile.src.includes("blank")) {
         return;
     }
 
-    let currCoords = currCell.id.split("-"); // id="0-0" -> ["0", "0"]
-    let r = parseInt(currCoords[0]);
-    let c = parseInt(currCoords[1]);
+    let selCoords = selCell.id.split("-"); // id="0-0" -> ["0", "0"]
+    let r = parseInt(selCoords[0]);
+    let c = parseInt(selCoords[1]);
 
     let otherCoords = otherTile.id.split("-");
     let r2 = parseInt(otherCoords[0]);
@@ -85,17 +83,17 @@ function dragEnd() {
     let isAdjacent = moveLeft || moveRight || moveUp || moveDown;
 
     if (isAdjacent) {
-        let currImg = currCell.src;
+        let selImg = selCell.src;
         let otherImg = otherTile.src;
-        currCell.src = otherImg;
-        otherTile.src = currImg;
+        selCell.src = otherImg;
+        otherTile.src = selImg;
 
         let validMove = checkValid();
         if (!validMove) {
-            let currImg = currCell.src;
+            let selImg = selCell.src;
             let otherImg = otherTile.src;
-            currCell.src = otherImg;
-            otherTile.src = currImg;
+            selCell.src = otherImg;
+            otherTile.src = selImg;
         }
     }
 }

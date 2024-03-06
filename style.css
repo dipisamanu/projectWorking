@@ -1,29 +1,21 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 900px;
-  background-image: url(images/sfondo.jpeg); 
-  background-size: cover; 
-  background-position: center; 
-  margin: 0; 
-  padding: 0; 
+    background: url("images/sfondo.jpeg") center center fixed;
+    color: white;
+    text-align: center;
 }
 
-#grid {
-  text-align: center;
-  background-color: rgb(96, 177, 234);
-  display: grid;
-  width: 600px;
+#board {
+    width: 500px;
+    height: 500px;
+    background-color: lightblue;
+    border: 5px solid slategray;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.box {
-  border: 3px solid black;
-  padding: 5px;
-  height: 100px;
-  width: auto;
+#board img {
+    width: 100px;
+    height: 100px;
 }
-.box.selected {
-  border: 3px solid yellow;
-}
-
