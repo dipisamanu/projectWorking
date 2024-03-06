@@ -108,7 +108,7 @@ function crushFive() {
             let candy3 = board[r][c + 2];
             let candy4 = board[r][c + 3];
             let candy5 = board[r][c + 4];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
                 if(candy1.src.includes("waste")){
                     score += (1*5)
                 } else if(candy1.src.includes("plastic")){
@@ -135,7 +135,7 @@ function crushFive() {
             let candy3 = board[r + 2][c];
             let candy4 = board[r + 3][c];
             let candy5 = board[r + 4][c];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
                 if(candy1.src.includes("waste")){
                     score += (1*5)
                 } else if(candy1.src.includes("plastic")){
@@ -162,7 +162,7 @@ function crushFour() {
             let candy2 = board[r][c + 1];
             let candy3 = board[r][c + 2];
             let candy4 = board[r][c + 3];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
                 if(candy1.src.includes("waste")){
                     score += (1*4)
                 } else if(candy1.src.includes("plastic")){
@@ -185,7 +185,7 @@ function crushFour() {
             let candy2 = board[r + 1][c];
             let candy3 = board[r + 2][c];
             let candy4 = board[r + 3][c];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
                 if(candy1.src.includes("waste")){
                     score += (1*4)
                 } else if(candy1.src.includes("plastic")){
@@ -210,7 +210,7 @@ function crushThree() {
             let candy1 = board[r][c];
             let candy2 = board[r][c + 1];
             let candy3 = board[r][c + 2];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
                 if(candy1.src.includes("waste")){
                     score += (1*3)
                 } else if(candy1.src.includes("plastic")){
@@ -232,7 +232,7 @@ function crushThree() {
             let candy1 = board[r][c];
             let candy2 = board[r + 1][c];
             let candy3 = board[r + 2][c];
-            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank")) {
+            if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank") && !candy1.src.includes("riciclo")) {
                 if(candy1.src.includes("waste")){
                     score += (1*3)
                 } else if(candy1.src.includes("plastic")){
