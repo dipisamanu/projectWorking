@@ -61,25 +61,19 @@ function dragDrop() {
 }
 
 function dragEnd() {
-
     if (selCell.src.includes("blank") || otherTile.src.includes("blank")) {
         return;
     }
-
     let selCoords = selCell.id.split("-"); // id="0-0" -> ["0", "0"]
     let r = parseInt(selCoords[0]);
     let c = parseInt(selCoords[1]);
-
     let otherCoords = otherTile.id.split("-");
     let r2 = parseInt(otherCoords[0]);
     let c2 = parseInt(otherCoords[1]);
-
     let moveLeft = c2 == c - 1 && r == r2;
     let moveRight = c2 == c + 1 && r == r2;
-
     let moveUp = r2 == r - 1 && c == c2;
     let moveDown = r2 == r + 1 && c == c2;
-
     let isAdiacent = moveLeft || moveRight || moveUp || moveDown;
 
     if (isAdiacent) {
@@ -87,7 +81,6 @@ function dragEnd() {
         let otherImg = otherTile.src;
         selCell.src = otherImg;
         otherTile.src = selImg;
-
         let validMove = checkValid();
         if (!validMove) {
             let selImg = selCell.src;
@@ -105,7 +98,6 @@ function distruggi() {
     document.getElementById("score").innerText = score;
 
 }
-
 
 function crushFive() {
     //check rows
@@ -148,7 +140,6 @@ function crushFive() {
 }
 
 function crushFour() {
-    //check rows
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns - 3; c++) {
             let candy1 = board[r][c];
@@ -164,8 +155,6 @@ function crushFour() {
             }
         }
     }
-
-    //check columns
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 3; r++) {
             let candy1 = board[r][c];
@@ -183,9 +172,7 @@ function crushFour() {
     }
 }
 
-
 function crushThree() {
-    //check rows
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns - 2; c++) {
             let candy1 = board[r][c];
@@ -199,7 +186,6 @@ function crushThree() {
             }
         }
     }
-    //check columns
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 2; r++) {
             let candy1 = board[r][c];
@@ -228,7 +214,6 @@ function checkValid() {
             }
         }
     }
-
     //check columns
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 2; r++) {
@@ -244,7 +229,6 @@ function checkValid() {
     return false;
 }
 
-
 function caduta() {
     for (let c = 0; c < columns; c++) {
         let ind = rows - 1;
@@ -254,7 +238,6 @@ function caduta() {
                 ind -= 1;
             }
         }
-
         for (let r = ind; r >= 0; r--) {
             board[r][c].src = "images/blank.png";
         }
