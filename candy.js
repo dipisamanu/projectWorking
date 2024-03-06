@@ -12,7 +12,7 @@ window.onload = function () {
         distruggi();
         caduta();
         genera();
-    }, 200);
+    }, 300);
 }
 
 function randomCandy() {
