@@ -5,6 +5,7 @@ body {
     color: white;
     font-size: 20px;
     text-align: center;
+    align-items: center;
 }
 
 #board {
@@ -20,5 +21,22 @@ body {
     width: 100px;
     height: 100px;
     border: 2.5px solid rgb(158, 177, 195);
+}
 
+.bar-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    margin-bottom: 10px;
+    width: 520px; /* Ad esempio, se la tua griglia è larga 500px */
+}
+.bar-container img {
+    width: 50px;
+    height: 50px;
+}
+.barra {
+    flex-grow: 1;
+    height: 20px;
+    margin: 0 10px;
+    transition: width 0.5s; /* Aggiungi una transizione per mostrare la crescita della barra */
 }

@@ -17,7 +17,7 @@ window.onload = function () {
         distruggi();
         caduta();
         genera();
-        aggiornaBarra();
+        aggiornaBarre();
     }, 200);
 }
 
@@ -436,6 +436,14 @@ function calcoloScore(tipo) {
     }
 }
 
-function aggiornaBarra(){
-    console.log(numElementi);
+function aggiornaBarre() {
+    for (let elemento in numElementi) {
+        let percentuale = (numElementi[elemento] / 50) * 100;
+        let barra = document.getElementById("barra-" + elemento);
+        let count = document.getElementById("count-" + elemento);
+        if (barra && count) {
+            barra.style.width = percentuale + "%";
+            count.textContent = numElementi[elemento] + "/50";
+        }
+    }
 }
