@@ -53,7 +53,7 @@ function dragEnter(e) {
     e.preventDefault();
 }
 
-function dragLeave() {}
+function dragLeave() { }
 
 function dragDrop() {
     //this refers to the target cell that was dropped on
@@ -80,9 +80,9 @@ function dragEnd() {
     let moveUp = r2 == r - 1 && c == c2;
     let moveDown = r2 == r + 1 && c == c2;
 
-    let isAdjacent = moveLeft || moveRight || moveUp || moveDown;
+    let isAdiacent = moveLeft || moveRight || moveUp || moveDown;
 
-    if (isAdjacent) {
+    if (isAdiacent) {
         let selImg = selCell.src;
         let otherImg = otherTile.src;
         selCell.src = otherImg;
@@ -99,12 +99,92 @@ function dragEnd() {
 }
 
 function distruggi() {
-    //crushFive();
-    //crushFour();
+    crushFive();
+    crushFour();
     crushThree();
     document.getElementById("score").innerText = score;
 
 }
+
+
+function crushFive() {
+    //check rows
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 4; c++) {
+            let candy1 = board[r][c];
+            let candy2 = board[r][c + 1];
+            let candy3 = board[r][c + 2];
+            let candy4 = board[r][c + 3];
+            let candy5 = board[r][c + 4];
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank")) {
+                candy1.src = "images/blank.png";
+                candy2.src = "images/blank.png";
+                candy3.src = "images/blank.png";
+                candy4.src = "images/blank.png";
+                candy5.src = "images/blank.png";
+                score += 50;
+            }
+        }
+    }
+
+    //check columns
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 4; r++) {
+            let candy1 = board[r][c];
+            let candy2 = board[r + 1][c];
+            let candy3 = board[r + 2][c];
+            let candy4 = board[r + 3][c];
+            let candy5 = board[r + 4][c];
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank")) {
+                candy1.src = "images/blank.png";
+                candy2.src = "images/blank.png";
+                candy3.src = "images/blank.png";
+                candy4.src = "images/blank.png";
+                candy5.src = "images/blank.png";
+                score += 50;
+            }
+        }
+    }
+}
+
+
+
+function crushFour() {
+    //check rows
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            let candy1 = board[r][c];
+            let candy2 = board[r][c + 1];
+            let candy3 = board[r][c + 2];
+            let candy4 = board[r][c + 3];
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank")) {
+                candy1.src = "images/blank.png";
+                candy2.src = "images/blank.png";
+                candy3.src = "images/blank.png";
+                candy4.src = "images/blank.png";
+                score += 40;
+            }
+        }
+    }
+
+    //check columns
+    for (let c = 0; c < columns; c++) {
+        for (let r = 0; r < rows - 3; r++) {
+            let candy1 = board[r][c];
+            let candy2 = board[r + 1][c];
+            let candy3 = board[r + 2][c];
+            let candy4 = board[r + 3][c];
+            if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank")) {
+                candy1.src = "images/blank.png";
+                candy2.src = "images/blank.png";
+                candy3.src = "images/blank.png";
+                candy4.src = "images/blank.png";
+                score += 40;
+            }
+        }
+    }
+}
+
 
 function crushThree() {
     //check rows
@@ -121,7 +201,6 @@ function crushThree() {
             }
         }
     }
-
     //check columns
     for (let c = 0; c < columns; c++) {
         for (let r = 0; r < rows - 2; r++) {
@@ -137,6 +216,7 @@ function crushThree() {
         }
     }
 }
+
 
 function checkValid() {
     //check rows
