@@ -15,7 +15,7 @@ window.onload = function () {
     }, 300);
 }
 
-function randomCandy() {
+function randomCella() {
     return cells[Math.floor(Math.random() * cells.length)];
 }
 
@@ -25,7 +25,7 @@ function startGame() {
         for (let c = 0; c < columns; c++) {
             let cell = document.createElement("img");
             cell.id = r.toString() + "-" + c.toString();
-            cell.src = "images/" + randomCandy() + ".png";
+            cell.src = "images/" + randomCella() + ".png";
             cell.addEventListener("dragstart", dragStart); //click on a candy, initialize drag process
             cell.addEventListener("dragover", dragOver);  //clicking on candy, moving mouse to drag the candy
             cell.addEventListener("dragenter", dragEnter); //dragging candy onto another candy
@@ -147,8 +147,6 @@ function crushFive() {
     }
 }
 
-
-
 function crushFour() {
     //check rows
     for (let r = 0; r < rows; r++) {
@@ -266,7 +264,7 @@ function caduta() {
 function genera() {
     for (let c = 0; c < columns; c++) {
         if (board[0][c].src.includes("blank")) {
-            board[0][c].src = "images/" + randomCandy() + ".png";
+            board[0][c].src = "images/" + randomCella() + ".png";
         }
     }
 }
