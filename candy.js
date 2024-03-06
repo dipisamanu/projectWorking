@@ -1,4 +1,4 @@
-let cells = ["bottle", "cardboard", "plastic", "waste"];
+let cells = ["glass", "cardboard", "plastic", "waste"];
 let board = [];
 let rows = 5;
 let columns = 5;
@@ -109,12 +109,20 @@ function crushFive() {
             let candy4 = board[r][c + 3];
             let candy5 = board[r][c + 4];
             if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank")) {
+                if(candy1.src.includes("waste")){
+                    score += (1*5)
+                } else if(candy1.src.includes("plastic")){
+                    score += (3*5)
+                } else if(candy1.src.includes("cardboard")){
+                    score += (2*5)
+                } else if(candy1.src.includes("glass")){
+                    score += (5*5)
+                }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
                 candy4.src = "images/blank.png";
                 candy5.src = "images/blank.png";
-                score += 50;
             }
         }
     }
@@ -128,12 +136,20 @@ function crushFive() {
             let candy4 = board[r + 3][c];
             let candy5 = board[r + 4][c];
             if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && candy4.src == candy5.src && !candy1.src.includes("blank")) {
+                if(candy1.src.includes("waste")){
+                    score += (1*5)
+                } else if(candy1.src.includes("plastic")){
+                    score += (3*5)
+                } else if(candy1.src.includes("cardboard")){
+                    score += (2*5)
+                } else if(candy1.src.includes("glass")){
+                    score += (5*5)
+                }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
                 candy4.src = "images/blank.png";
                 candy5.src = "images/blank.png";
-                score += 50;
             }
         }
     }
@@ -147,11 +163,19 @@ function crushFour() {
             let candy3 = board[r][c + 2];
             let candy4 = board[r][c + 3];
             if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank")) {
+                if(candy1.src.includes("waste")){
+                    score += (1*4)
+                } else if(candy1.src.includes("plastic")){
+                    score += (3*4)
+                } else if(candy1.src.includes("cardboard")){
+                    score += (2*4)
+                } else if(candy1.src.includes("glass")){
+                    score += (5*4)
+                }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
                 candy4.src = "images/blank.png";
-                score += 40;
             }
         }
     }
@@ -162,11 +186,19 @@ function crushFour() {
             let candy3 = board[r + 2][c];
             let candy4 = board[r + 3][c];
             if (candy1.src == candy2.src && candy2.src == candy3.src && candy3.src == candy4.src && !candy1.src.includes("blank")) {
+                if(candy1.src.includes("waste")){
+                    score += (1*4)
+                } else if(candy1.src.includes("plastic")){
+                    score += (3*4)
+                } else if(candy1.src.includes("cardboard")){
+                    score += (2*4)
+                } else if(candy1.src.includes("glass")){
+                    score += (5*4)
+                }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
                 candy4.src = "images/blank.png";
-                score += 40;
             }
         }
     }
@@ -179,10 +211,19 @@ function crushThree() {
             let candy2 = board[r][c + 1];
             let candy3 = board[r][c + 2];
             if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank")) {
+                if(candy1.src.includes("waste")){
+                    score += (1*3)
+                } else if(candy1.src.includes("plastic")){
+                    score += (3*3)
+                } else if(candy1.src.includes("cardboard")){
+                    score += (2*3)
+                } else if(candy1.src.includes("glass")){
+                    score += (5*3)
+                }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
-                score += 30;
+                
             }
         }
     }
@@ -192,10 +233,19 @@ function crushThree() {
             let candy2 = board[r + 1][c];
             let candy3 = board[r + 2][c];
             if (candy1.src == candy2.src && candy2.src == candy3.src && !candy1.src.includes("blank")) {
+                if(candy1.src.includes("waste")){
+                    score += (1*3)
+                } else if(candy1.src.includes("plastic")){
+                    score += (3*3)
+                } else if(candy1.src.includes("cardboard")){
+                    score += (2*3)
+                } else if(candy1.src.includes("glass")){
+                    score += (5*3)
+                }
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
-                score += 30;
+                
             }
         }
     }
