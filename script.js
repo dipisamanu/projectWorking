@@ -135,7 +135,7 @@ function crushFive() {
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
                 candy4.src = "images/blank.png";
-                candy5.src = "images/blank.png";
+                candy5.src = "images/amoreNatura.png";
             }
         }
     }
@@ -162,7 +162,7 @@ function crushFive() {
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
                 candy4.src = "images/blank.png";
-                candy5.src = "images/blank.png";
+                candy5.src = "images/amoreNatura.png";
             }
         }
     }
@@ -330,34 +330,47 @@ function removeAdjacentCells(row, column) {
     // Verifica la presenza di celle adiacenti e rimuovile se esistono
     if (row + 1 < rows) {
         let candy1 = board[row + 1][column];
+        if (candy1.src.includes("riciclo")) {
+            removeAdjacentCells(row + 1, column);
+        }
         calcoloScore(candy1);
         candy1.src = "images/blank.png";
     }
     if (column + 1 < columns) {
         let candy2 = board[row][column + 1];
+        if (candy2.src.includes("riciclo")) {
+            removeAdjacentCells(row, column + 1);
+        }
         calcoloScore(candy2);
         candy2.src = "images/blank.png";
     }
     if (row - 1 >= 0) {
         let candy3 = board[row - 1][column];
+        if (candy3.src.includes("riciclo")) {
+            removeAdjacentCells(row - 1, column);
+        }
         calcoloScore(candy3);
         candy3.src = "images/blank.png";
     }
     if (column - 1 >= 0) {
         let candy4 = board[row][column - 1];
+        if (candy4.src.includes("riciclo")) {
+            removeAdjacentCells(row, column - 1);
+        }
         calcoloScore(candy4);
         candy4.src = "images/blank.png";
     }
 }
 
-function calcoloScore(tipo){
-    if(tipo.src.includes("waste")){
+
+function calcoloScore(tipo) {
+    if (tipo.src.includes("waste")) {
         score += 1
-    } else if(tipo.src.includes("glass")){
+    } else if (tipo.src.includes("glass")) {
         score += 5
-    } else if(tipo.src.includes("cardboard")){
+    } else if (tipo.src.includes("cardboard")) {
         score += 2
-    } else if(tipo.src.includes("plastic")){
+    } else if (tipo.src.includes("plastic")) {
         score += 3
     }
 }
