@@ -175,7 +175,7 @@ function crushFour() {
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
-                candy4.src = "images/blank.png";
+                candy4.src = "images/riciclo.png";
             }
         }
     }
@@ -198,7 +198,7 @@ function crushFour() {
                 candy1.src = "images/blank.png";
                 candy2.src = "images/blank.png";
                 candy3.src = "images/blank.png";
-                candy4.src = "images/blank.png";
+                candy4.src = "images/riciclo.png";
             }
         }
     }
