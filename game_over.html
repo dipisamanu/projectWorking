@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Over</title>
+    <title>Hai perso!</title>
 </head>
+
 <body>
-    
+    <style>
+        body {
+            background: url('images/sfondo.jpeg');
+            background-size: cover;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .image {
+            width: 300px;
+            height: 300px;
+
+        }
+    </style>
+    <div class="container">
+        <div style="color: white;" class="message">HAI PERSO...</div>
+        <img class="image" src="images/nutriarelliTriste.png" alt="Immagine">
+    </div>
 </body>
+
 </html>
