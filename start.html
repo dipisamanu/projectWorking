@@ -1,36 +1,56 @@
 <html>
+
 <head>
 </head>
+
 <body>
     <h1>Candy Trash</h1>
     <div id="play-button" style="text-align: center;">
         <button onclick="showGridButtons()">Gioca</button>
     </div>
-    
+
     <div id="grid-buttons">
-        <button onclick="chooseGrid(5)">Griglia 5x5</button>
-        <button onclick="chooseGrid(6)">Griglia 6x6</button>
-        <button onclick="chooseGrid(7)">Griglia 7x7</button>
+        <p style="text-align: center; font-size: 20px; font-family: 'Comic Sans MS', bold, sans-serif;" id="testo">
+            Scegli la dimensione della griglia:</p>
+        <button onclick="chooseGrid(5)">5x5</button>
+        <button onclick="chooseGrid(6)">6x6</button>
+        <button onclick="chooseGrid(7)">7x7</button>
     </div>
     <div id="name-input">
-        <p>Inserisci il tuo nome:</p>
+        <p id="testo" style="font-size: 20px; font-family: 'Comic Sans MS', bold, sans-serif;">Inserisci il tuo nome:
+        </p>
         <input id="name" type="text" placeholder="Nome">
         <button onclick="saveName()">Salva</button>
     </div>
     <div id="play-link">
-        <a href="tutorial.html">Inizia il gioco</a>
+        <a href="tutorial.html" style="font-size: 20px; font-family: 'Comic Sans MS', bold, sans-serif;">Inizia il
+            gioco</a>
     </div>
+        <img id="nutria" src="images/nutriarelli.png">
     <style>
-        h1 {
-            font-family: "Comic Sans MS", cursive, sans-serif;
-            font-size: 60px;
-            color: #FF69B4;
+        body {
+            background: url("images/sfondo.jpeg") center center fixed;
+            background-size: cover;
+            background-position: center;
+        }
+        .testo {
+            font-family: "Comic Sans MS", bold, sans-serif;
+            font-size: 90px;
+            color: rgb(40, 34, 214);
             text-align: center;
+        }
+
+        h1 {
+            font-family: "Comic Sans MS", bold, sans-serif;
+            font-size: 90px;
+            color: rgb(35, 130, 56);
+            text-align: center;
+            text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white;
         }
 
         button {
             font-family: "Comic Sans MS", cursive, sans-serif;
-            font-size: 20px;
+            font-size: 30px;
             color: white;
             background-color: #148f4d;
             border: none;
@@ -64,8 +84,13 @@
         #play-link {
             display: none;
             text-align: center;
+        }
+        #nutria{
+            position: fixed;
+            bottom: 0px;
             
         }
+
     </style>
     <script>
         let playerMap = {};
@@ -98,4 +123,5 @@
         console.log(playerMap);
     </script>
 </body>
+
 </html>

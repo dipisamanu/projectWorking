@@ -23,7 +23,6 @@ let dialogs = [
     "Ora che sai come giocare, sei pronto per iniziare la sfida? Clicca sul pulsante qui sotto per andare al gioco. Buona fortuna!"
 ];
 
-// Variabile che tiene conto del dialogo corrente
 let dialogIndex = 0;
 
 // Funzione che mostra il dialogo successivo o porta al gioco
@@ -43,7 +42,7 @@ window.onload = function () {
         caduta();
         genera();
         aggiornaBarre();
-    }, 200);
+    }, 250);
 }
 
 function randomCella() {

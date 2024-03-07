@@ -2,6 +2,12 @@
 
 <head>
     <style>
+        body {
+            background: url("images/sfondo.jpeg") center center fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
         #game {
             width: 500px;
             height: 500px;
@@ -25,7 +31,7 @@
             font-family: "Comic Sans MS", cursive, sans-serif;
             font-size: 20px;
             color: black;
-            background-color: white;
+            background-color: rgb(156, 194, 142);
             padding: 10px;
             text-align: center;
         }
@@ -34,16 +40,17 @@
             font-family: "Comic Sans MS", cursive, sans-serif;
             font-size: 20px;
             color: white;
-            background-color: #143fff;
+            background-color: #1bac1b;
             border: none;
             border-radius: 10px;
             padding: 10px;
             margin: 10px;
             cursor: pointer;
+            
         }
 
         #image {
-            width: 250px;
+            width: 300px;
             height: 350px;
             position: absolute;
             top: 75px;
@@ -59,30 +66,30 @@
         <img id="image" src="" alt="Image">
     </div>
     <div id="dialog">
-        <p id="text">Ciao, sono il dottor Nutriarelli e ti insegnerò come giocare a Candy Trash!</p>
+        <p id="text">Ciao, sono il dottor Norindo Nutriarelli e ti insegnerò come giocare a Candy Trash! Mi dovrai aiutare a ripulire il letto del fiume Bacchiglione dai rifiuti.</p>
         <button id="next-button" onclick="nextDialog()">Avanti</button>
     </div>
     <script>
         // Array che contiene i dialoghi del tutorial
         let dialogs = [
-            "Ciao, sono il dottor Nutriarelli e ti insegnerò come giocare a Candy Trash!",
-            "Il tuo obiettivo è di raccogliere 50 elementi di tutti e quattro i tipi: carta, plastica, vetro e metallo.",
+            "",
+            "Il tuo obiettivo è quello di raccogliere 50 elementi di tutti e quattro i tipi: carta, plastica, vetro e secco.",
             "Per farlo, devi trascinare le celle per allinearne almeno tre dello stesso tipo. Così facendo, le celle scompariranno e verranno sostituite da altre.",
-            "Se allinei quattro celle dello stesso tipo, otterrai il potere del riciclo, che ha un simbolo di una freccia verde. Se clicchi sul potere del riciclo, eliminerai gli elementi adiacenti a lui a croce.",
-            "Se allinei cinque celle dello stesso tipo, otterrai l'amore della natura, che ha un simbolo di un cuore verde. Se clicchi sull'amore della natura, eliminerai tutte le 8 celle attorno a lui.",
+            "Se allinei quattro celle dello stesso tipo, otterrai il potere del riciclo. Se clicchi sul potere del riciclo, eliminerai gli elementi adiacenti a lui a croce.",
+            "Se allinei cinque celle dello stesso tipo, otterrai l'amore della natura. Se clicchi sull'amore della natura, eliminerai tutte le 8 celle attorno a lui.",
             "Ma attenzione: se fai tre mosse che non producono nessun allineamento, perderai!",
             "Ora che sai come giocare, sei pronto per iniziare la sfida? Clicca sul pulsante qui sotto per andare al gioco. Buona fortuna!"
         ];
 
         // Array che contiene le immagini del tutorial
         let images = [
-            "images/50elementi.png",
+            "",
+            "",
             "images/elements.png",
-            "images/tris.png",
             "images/quaterna.png",
             "images/cinquina.png",
-            "",
-            ""
+            "images/nutriarelliTriste.png",
+            "images/nutriarelliFelice.png"
         ];
 
         // Variabile che tiene conto del dialogo corrente
