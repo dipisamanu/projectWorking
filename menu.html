@@ -1,0 +1,101 @@
+<html>
+<head>
+</head>
+<body>
+    <h1>Candy Trash</h1>
+    <div id="play-button" style="text-align: center;">
+        <button onclick="showGridButtons()">Gioca</button>
+    </div>
+    
+    <div id="grid-buttons">
+        <button onclick="chooseGrid(5)">Griglia 5x5</button>
+        <button onclick="chooseGrid(6)">Griglia 6x6</button>
+        <button onclick="chooseGrid(7)">Griglia 7x7</button>
+    </div>
+    <div id="name-input">
+        <p>Inserisci il tuo nome:</p>
+        <input id="name" type="text" placeholder="Nome">
+        <button onclick="saveName()">Salva</button>
+    </div>
+    <div id="play-link">
+        <a href="tutorial.html">Inizia il gioco</a>
+    </div>
+    <style>
+        h1 {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 60px;
+            color: #FF69B4;
+            text-align: center;
+        }
+
+        button {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 20px;
+            color: white;
+            background-color: #148f4d;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        input {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 20px;
+            color: black;
+            background-color: white;
+            border: 2px solid #1437ff;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        #grid-buttons {
+            display: none;
+            text-align: center;
+        }
+
+        #name-input {
+            display: none;
+            text-align: center;
+        }
+
+        #play-link {
+            display: none;
+            text-align: center;
+            
+        }
+    </style>
+    <script>
+        let playerMap = {};
+
+        // Funzione che mostra i pulsanti per scegliere la griglia
+        function showGridButtons() {
+            document.getElementById("play-button").style.display = "none";
+            document.getElementById("grid-buttons").style.display = "block";
+        }
+
+        // Funzione che salva la dimensione della griglia scelta dal giocatore
+        function chooseGrid(size) {
+            playerMap["gridSize"] = size;
+            document.getElementById("grid-buttons").style.display = "none";
+            document.getElementById("name-input").style.display = "block";
+        }
+
+        // Funzione che salva il nome del giocatore e mostra il link al gioco
+        function saveName() {
+            let name = document.getElementById("name").value;
+            if (name == "") {
+                alert("Per favore, inserisci un nome valido");
+            } else {
+                playerMap["name"] = name;
+                playerMap["score"] = 0;
+                document.getElementById("name-input").style.display = "none";
+                document.getElementById("play-link").style.display = "block";
+            }
+        }
+        console.log(playerMap);
+    </script>
+</body>
+</html>
