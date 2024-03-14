@@ -13,28 +13,6 @@ let numElementi = {
     "plastica": 0
 }
 
-let dialogs = [
-    "Ciao, sono la tua mascotte e ti insegnerò come giocare a Candy Trash!",
-    "Il tuo obiettivo è di raccogliere 50 elementi di tutti e quattro i tipi: carta, plastica, vetro e metallo.",
-    "Per farlo, devi trascinare le celle per allinearne almeno tre dello stesso tipo. Così facendo, le celle scompariranno e verranno sostituite da altre.",
-    "Se allinei quattro celle dello stesso tipo, otterrai il potere del riciclo, che ha un simbolo di una freccia verde. Se clicchi sul potere del riciclo, eliminerai gli elementi adiacenti a lui a croce.",
-    "Se allinei cinque celle dello stesso tipo, otterrai l'amore della natura, che ha un simbolo di un cuore verde. Se clicchi sull'amore della natura, eliminerai tutte le 8 celle attorno a lui.",
-    "Ma attenzione, hai solo un numero limitato di mosse. Se fai tre mosse che non producono nessun allineamento, perderai il gioco.",
-    "Ora che sai come giocare, sei pronto per iniziare la sfida? Clicca sul pulsante qui sotto per andare al gioco. Buona fortuna!"
-];
-
-let dialogIndex = 0;
-
-// Funzione che mostra il dialogo successivo o porta al gioco
-function nextDialog() {
-    dialogIndex++;
-    if (dialogIndex < dialogs.length) {
-        document.getElementById("text").innerHTML = dialogs[dialogIndex];
-    } else {
-        window.location.href = "game.html";
-    }
-}
-
 window.onload = function () {
     startGame();
     window.setInterval(function () {
